@@ -17,6 +17,11 @@ def get_helper(name):
     return cherrypy.config.get(setting_name(name), DEFAULTS.get(name, None))
 
 
+def load_strategy():
+    return get_strategy(get_helper('STRATEGY'),
+                        get_helper('STORAGE'))
+
+
 def load_backend(strategy, name, redirect_uri):
     backends = get_helper('AUTHENTICATION_BACKENDS')
     Backend = get_backend(backends, name)
@@ -33,8 +38,7 @@ def psa(redirect_uri=None):
                 if uri[-1] != '/' and \
                    cherrypy.config.get(setting_name('TRAILING_SLASH'), False):
                     uri = uri + '/'
-            self.strategy = get_strategy(get_helper('STRATEGY'),
-                                         get_helper('STORAGE'))
+            self.strategy = load_strategy()
             self.backend = load_backend(self.strategy, backend, uri)
             return func(self, backend, *args, **kwargs)
         return wrapper

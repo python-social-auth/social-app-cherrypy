@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- Added `load_strategy` utility
+
 ### Chaged
 - Split from the monolitic [python-social-auth](https://github.com/omab/python-social-auth)
   codebase
