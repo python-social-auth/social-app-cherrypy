@@ -9,6 +9,7 @@ from social_core.utils import setting_name, module_member
 from social_sqlalchemy.storage import SQLAlchemyUserMixin, \
                                       SQLAlchemyAssociationMixin, \
                                       SQLAlchemyNonceMixin, \
+                                      SQLAlchemyPartialMixin, \
                                       BaseSQLAlchemyStorage
 
 
@@ -51,7 +52,13 @@ class Association(CherryPySocialBase, SQLAlchemyAssociationMixin, SocialBase):
     pass
 
 
+class Partial(CherryPySocialBase, SQLAlchemyPartialMixin, SocialBase):
+    """Partial pipeline storage"""
+    pass
+
+
 class CherryPyStorage(BaseSQLAlchemyStorage):
     user = UserSocialAuth
     nonce = Nonce
     association = Association
+    partial = Partial

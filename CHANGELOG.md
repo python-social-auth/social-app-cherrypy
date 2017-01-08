@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 - Added `load_strategy` utility
+- Added partial pipeline db storage solution
 
 ### Chaged
 - Split from the monolitic [python-social-auth](https://github.com/omab/python-social-auth)
