@@ -1,9 +1,8 @@
 """Flask SQLAlchemy ORM models for Social Auth"""
 import cherrypy
 
-from sqlalchemy import Column, Integer, String, ForeignKey
-from sqlalchemy.orm import relationship
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import String, ForeignKey
+from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
 
 from social_core.utils import setting_name, module_member
 from social_sqlalchemy.storage import SQLAlchemyUserMixin, \
@@ -13,7 +12,8 @@ from social_sqlalchemy.storage import SQLAlchemyUserMixin, \
                                       BaseSQLAlchemyStorage
 
 
-SocialBase = declarative_base()
+class SocialBase(DeclarativeBase):
+    pass
 
 DB_SESSION_ATTR = cherrypy.config.get(setting_name('DB_SESSION_ATTR'), 'db')
 UID_LENGTH = cherrypy.config.get(setting_name('UID_LENGTH'), 255)
@@ -28,10 +28,10 @@ class CherryPySocialBase(object):
 
 class UserSocialAuth(CherryPySocialBase, SQLAlchemyUserMixin, SocialBase):
     """Social Auth association model"""
-    uid = Column(String(UID_LENGTH))
-    user_id = Column(Integer, ForeignKey(User.id),
-                     nullable=False, index=True)
-    user = relationship(User, backref='social_auth')
+    uid: Mapped[str] = mapped_column(String(UID_LENGTH))
+    user_id: Mapped[int] = mapped_column(ForeignKey(User.id),
+                                         nullable=False, index=True)
+    user: Mapped["User"] = relationship(User, backref='social_auth')
 
     @classmethod
     def username_max_length(cls):
