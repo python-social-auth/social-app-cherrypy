@@ -60,5 +60,5 @@ class CherryPyStrategy(BaseStrategy):
         return cherrypy.url(path or "")
 
     def is_response(self, value):
-        return (isinstance(value, str) or
+        return (isinstance(value, str) or  # fmt: skip
                 isinstance(value, cherrypy.CherryPyException))
