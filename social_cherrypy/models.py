@@ -15,6 +15,7 @@ from social_sqlalchemy.storage import SQLAlchemyUserMixin, \
 class SocialBase(DeclarativeBase):
     pass
 
+
 DB_SESSION_ATTR = cherrypy.config.get(setting_name('DB_SESSION_ATTR'), 'db')
 UID_LENGTH = cherrypy.config.get(setting_name('UID_LENGTH'), 255)
 User = module_member(cherrypy.config[setting_name('USER_MODEL')])
