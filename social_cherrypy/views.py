@@ -21,8 +21,10 @@ class CherryPyPSAViews:
 
     @cherrypy.expose
     @psa()
-    def disconnect(self, backend, association_id=None,  # fmt: skip
-                   csrfmiddlewaretoken=None):
+    def disconnect(
+        self, backend, association_id=None,  # fmt: skip
+        csrfmiddlewaretoken=None,
+    ):
         user = getattr(cherrypy.request, "user", None)
         return do_disconnect(self.backend, user, association_id)
 
