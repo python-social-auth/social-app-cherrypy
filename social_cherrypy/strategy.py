@@ -1,4 +1,3 @@
-import six
 import cherrypy
 
 from social_core.strategy import BaseStrategy, BaseTemplateStrategy
@@ -62,5 +61,5 @@ class CherryPyStrategy(BaseStrategy):
         return cherrypy.url(path or '')
 
     def is_response(self, value):
-        return isinstance(value, six.string_types) or \
+        return isinstance(value, str) or \
                isinstance(value, cherrypy.CherryPyException)
