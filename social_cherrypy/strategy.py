@@ -1,5 +1,5 @@
 import cherrypy
-
+import six
 from social_core.strategy import BaseStrategy, BaseTemplateStrategy
 
 
@@ -24,7 +24,7 @@ class CherryPyStrategy(BaseStrategy):
     def request_data(self, merge=True):
         if merge:
             data = cherrypy.request.params
-        elif cherrypy.request.method == 'POST':
+        elif cherrypy.request.method == "POST":
             data = cherrypy.body.params
         else:
             data = cherrypy.request.params
@@ -40,9 +40,9 @@ class CherryPyStrategy(BaseStrategy):
         return content
 
     def authenticate(self, backend, *args, **kwargs):
-        kwargs['strategy'] = self
-        kwargs['storage'] = self.storage
-        kwargs['backend'] = backend
+        kwargs["strategy"] = self
+        kwargs["storage"] = self.storage
+        kwargs["backend"] = backend
         return backend.authenticate(*args, **kwargs)
 
     def session_get(self, name, default=None):
@@ -58,8 +58,12 @@ class CherryPyStrategy(BaseStrategy):
         return cherrypy.session.setdefault(name, value)
 
     def build_absolute_uri(self, path=None):
-        return cherrypy.url(path or '')
+        return cherrypy.url(path or "")
 
     def is_response(self, value):
+<<<<<<< HEAD
         return isinstance(value, str) or \
                isinstance(value, cherrypy.CherryPyException)
+=======
+        return isinstance(value, str) or isinstance(value, cherrypy.CherryPyException)
+>>>>>>> d0a118c8c84b78bea4c7fa220d6c764e4405a095
