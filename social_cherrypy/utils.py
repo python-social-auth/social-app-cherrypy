@@ -12,7 +12,7 @@ DEFAULTS = {
 
 
 def get_helper(name):
-    return cherrypy.config.get(setting_name(name), DEFAULTS.get(name, None))
+    return cherrypy.config.get(setting_name(name), DEFAULTS.get(name))
 
 
 def load_strategy():
@@ -46,8 +46,10 @@ def psa(redirect_uri=None):
 
 
 def backends(user):
-    """Load Social Auth current user data to context under the key 'backends'.
-    Will return the output of social_core.backends.utils.user_backends_data."""
+    """
+    Load Social Auth current user data to context under the key 'backends'.
+    Will return the output of social_core.backends.utils.user_backends_data.
+    """
     return user_backends_data(
         user,
         get_helper("AUTHENTICATION_BACKENDS"),

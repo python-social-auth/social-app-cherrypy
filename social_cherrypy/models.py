@@ -49,19 +49,13 @@ class UserSocialAuth(CherryPySocialBase, SQLAlchemyUserMixin, SocialBase):
 class Nonce(CherryPySocialBase, SQLAlchemyNonceMixin, SocialBase):
     """One use numbers"""
 
-    pass
-
 
 class Association(CherryPySocialBase, SQLAlchemyAssociationMixin, SocialBase):
     """OpenId account association"""
 
-    pass
-
 
 class Partial(CherryPySocialBase, SQLAlchemyPartialMixin, SocialBase):
     """Partial pipeline storage"""
-
-    pass
 
 
 class CherryPyStorage(BaseSQLAlchemyStorage):
