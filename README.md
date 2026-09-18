@@ -13,7 +13,7 @@ in a CherryPy based project when using [SQLAlchemy](http://www.sqlalchemy.org/).
 
 ## Documentation
 
-Project documentation is available at https://python-social-auth.readthedocs.io/.
+Project documentation is available at <https://python-social-auth.readthedocs.io/>.
 
 ## Setup
 
